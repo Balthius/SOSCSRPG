@@ -1,6 +1,6 @@
-﻿using System.Windows;
+﻿using Elebris_WPF_Rpg.Core;
+using System.Windows;
 using System.Windows.Threading;
-using SOSCSRPG.Core;
 
 namespace WPFUI
 {

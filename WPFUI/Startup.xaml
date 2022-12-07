@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFUI"
-        xmlns:models="clr-namespace:SOSCSRPG.Models;assembly=SOSCSRPG.Models"
+        xmlns:models="clr-namespace:Elebris_WPF_Rpg.Models;assembly=Elebris_WPF_Rpg.Models"
         d:DataContext="{d:DesignInstance models:GameDetails}"
         mc:Ignorable="d"
         FontSize="11pt"

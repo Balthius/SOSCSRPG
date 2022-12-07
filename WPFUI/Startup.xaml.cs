@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Windows;
-using SOSCSRPG.Models;
-using SOSCSRPG.Services;
-using SOSCSRPG.ViewModels;
+using Elebris_WPF_Rpg.Models;
+using Elebris_WPF_Rpg.Services;
 using Microsoft.Win32;
 
 namespace WPFUI

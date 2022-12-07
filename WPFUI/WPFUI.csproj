@@ -2,14 +2,14 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
+  
   <ItemGroup>
-    <ProjectReference Include="..\SOSCSRPG.Core\SOSCSRPG.Core.csproj" />
-    <ProjectReference Include="..\SOSCSRPG.Models\SOSCSRPG.Models.csproj" />
-    <ProjectReference Include="..\SOSCSRPG.ViewModels\SOSCSRPG.ViewModels.csproj" />
+	  <ProjectReference Include="..\Elebris_WPF_Rpg.Core\Elebris_WPF_Rpg.Core.csproj" />
+	  <ProjectReference Include="..\Elebris_WPF_Rpg.Models\Elebris_WPF_Rpg.Models.csproj" />
+	  <ProjectReference Include="..\Elebris_WPF_Rpg.ViewModels\Elebris_WPF_Rpg.ViewModels.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
