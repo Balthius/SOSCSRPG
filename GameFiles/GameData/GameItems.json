@@ -1,0 +1,29 @@
+{
+  "GameItems": {
+    "Weapons": {
+      "Weapon": [
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    },
+    "HealingItems": {
+      "HealingItem": ""
+    },
+    "MiscellaneousItems": {
+      "MiscellaneousItem": [
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ""
+      ]
+    }
+  }
+}
