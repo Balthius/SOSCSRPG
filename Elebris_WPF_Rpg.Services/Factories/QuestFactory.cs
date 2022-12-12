@@ -1,12 +1,11 @@
 ﻿using Elebris_WPF_Rpg.Models;
-using Elebris_WPF_Rpg.Models.Shared;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
     internal static class QuestFactory
     {
-        private const string GAME_DATA_FILENAME = ".\\GameData\\Quests.xml";
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Quests.json";
 
         private static readonly List<Quest> _quests = new List<Quest>();
 
@@ -14,10 +13,10 @@ namespace Elebris_WPF_Rpg.Services.Factories
         {
             if (File.Exists(GAME_DATA_FILENAME))
             {
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                JObject data = JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-                LoadQuestsFromNodes(data.SelectNodes("/Quests/Quest"));
+                JArray nodes = (JArray)data["Quests"];
+                LoadQuestsFromNodes(nodes);
             }
             else
             {
@@ -25,34 +24,34 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
         }
 
-        private static void LoadQuestsFromNodes(XmlNodeList nodes)
+        private static void LoadQuestsFromNodes(JArray nodes)
         {
-            foreach (XmlNode node in nodes)
+            foreach (JToken node in nodes)
             {
                 // Declare the items need to complete the quest, and its reward items
                 List<ItemQuantity> itemsToComplete = new List<ItemQuantity>();
                 List<ItemQuantity> rewardItems = new List<ItemQuantity>();
 
-                foreach (XmlNode childNode in node.SelectNodes("./ItemsToComplete/Item"))
+                foreach (JToken childNode in node["ItemsToComplete"])
                 {
-                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    GameItem item = ItemFactory.CreateGameItem((int)childNode["ID"]);
 
-                    itemsToComplete.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
+                    itemsToComplete.Add(new ItemQuantity(item, (int)childNode["Quantity"]));
                 }
 
-                foreach (XmlNode childNode in node.SelectNodes("./RewardItems/Item"))
+                foreach (JToken childNode in node["RewardItems"])
                 {
-                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    GameItem item = ItemFactory.CreateGameItem((int)childNode["ID"]);
 
-                    rewardItems.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
+                    rewardItems.Add(new ItemQuantity(item, (int)childNode["Quantity"]));
                 }
 
-                _quests.Add(new Quest(node.AttributeAsInt("ID"),
-                                      node.SelectSingleNode("./Name")?.InnerText ?? "",
-                                      node.SelectSingleNode("./Description")?.InnerText ?? "",
+                _quests.Add(new Quest((int)node["ID"],
+                                      (string)node["Name"],
+                                      (string)node["Description"],
                                       itemsToComplete,
-                                      node.AttributeAsInt("RewardExperiencePoints"),
-                                      node.AttributeAsInt("RewardGold"),
+                                      (int)node["RewardExperiencePoints"],
+                                      (int)node["RewardGold"],
                                       rewardItems));
             }
         }

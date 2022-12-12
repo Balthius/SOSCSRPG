@@ -1,0 +1,22 @@
+{
+  "Quests": [
+    {
+      "ID": "1",
+      "RewardExperiencePoints": "25",
+      "RewardGold": "10",
+      "Description": "Defeat the snakes in the Herbalist's garden.",
+      "ItemsToComplete": [
+        {
+          "ID": "9001",
+          "Quantity": "5"
+        }
+      ],
+      "RewardItems": [
+        {
+          "ID": "1002",
+          "Quantity": "1"
+        }
+      ]
+    }
+  ]
+}

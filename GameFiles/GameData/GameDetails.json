@@ -6,32 +6,32 @@
     {
       "Key": "STR",
       "DisplayName": "Strength",
-      "DiceNotation": "3d6"
+      "Base": 3
     },
     {
       "Key": "INT",
       "DisplayName": "Intelligence",
-      "DiceNotation": "3d6"
+      "Base": 3
     },
     {
       "Key": "WIS",
       "DisplayName": "Wisdom",
-      "DiceNotation": "3d6"
+      "Base": 3
     },
     {
-      "Key": "CON",
-      "DisplayName": "Constitution",
-      "DiceNotation": "3d6"
+      "Key": "END",
+      "DisplayName": "Endurance",
+      "Base": 3
     },
     {
-      "Key": "DEX",
-      "DisplayName": "Dexterity",
-      "DiceNotation": "3d6"
+      "Key": "AGI",
+      "DisplayName": "Agility",
+      "Base": 3
     },
     {
-      "Key": "CHA",
-      "DisplayName": "Charisma",
-      "DiceNotation": "3d6"
+      "Key": "EXT",
+      "DisplayName": "Expertise",
+      "Base": 3
     }
   ],
   "Races": [
@@ -40,7 +40,7 @@
       "DisplayName": "Human",
       "PlayerAttributeModifiers": [
         {
-          "Key": "CON",
+          "Key": "END",
           "Modifier": "1"
         }
       ]
@@ -50,7 +50,7 @@
       "DisplayName": "Elf",
       "PlayerAttributeModifiers": [
         {
-          "Key": "CHA",
+          "Key": "EXT",
           "Modifier": "1"
         },
         {
@@ -64,7 +64,7 @@
       "DisplayName": "Orc",
       "PlayerAttributeModifiers": [
         {
-          "Key": "CHA",
+          "Key": "EXT",
           "Modifier": "-1"
         },
         {

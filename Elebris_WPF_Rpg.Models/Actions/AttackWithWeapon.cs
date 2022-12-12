@@ -2,9 +2,9 @@
 {
     public class AttackWithWeapon : BaseAction, IAction
     {
-        private readonly string _damageDice;
+        private readonly int _damage;
 
-        public AttackWithWeapon(GameItem itemInUse, string damageDice)
+        public AttackWithWeapon(GameItem itemInUse, int damage)
             : base(itemInUse)
         {
             if (itemInUse.Category != GameItem.ItemCategory.Weapon)
@@ -12,12 +12,8 @@
                 throw new ArgumentException($"{itemInUse.Name} is not a weapon");
             }
 
-            if (string.IsNullOrWhiteSpace(damageDice))
-            {
-                throw new ArgumentException("damageDice must be valid dice notation");
-            }
 
-            _damageDice = damageDice;
+            _damage = damage;
         }
 
         public void Execute(LivingEntity actor, LivingEntity target)
@@ -27,6 +23,7 @@
 
             if (AttackSucceeded(actor, target))
             {
+                //Fake Value: Not using a dice System
                 int damage = 999;
 
                 ReportResult($"{actorName} hit {targetName} for {damage} point{(damage > 1 ? "s" : "")}.");
@@ -41,6 +38,7 @@
 
         private static bool AttackSucceeded(LivingEntity attacker, LivingEntity target)
         {
+            //Fake Value: Not using a dice System
             return false;
         }
     }

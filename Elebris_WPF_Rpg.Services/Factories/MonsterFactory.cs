@@ -1,12 +1,11 @@
 ﻿using Elebris_WPF_Rpg.Models;
-using Elebris_WPF_Rpg.Models.Shared;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
     public static class MonsterFactory
     {
-        private const string GAME_DATA_FILENAME = ".\\GameData\\Monsters.xml";
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Monsters.json";
 
         private static readonly GameDetails s_gameDetails;
         private static readonly List<Monster> s_baseMonsters = new List<Monster>();
@@ -17,14 +16,14 @@ namespace Elebris_WPF_Rpg.Services.Factories
             {
                 s_gameDetails = GameDetailsService.ReadGameDetails();
 
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                JObject data = JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-                string rootImagePath =
-                    data.SelectSingleNode("/Monsters")
-                        .AttributeAsString("RootImagePath");
+                string rootImagePath = (string)data["RootImagePath"];
+                JArray nodes = (JArray)data["Monsters"];
+                LoadMonstersFromNodes(nodes, rootImagePath);
 
-                LoadMonstersFromNodes(data.SelectNodes("/Monsters/Monster"), rootImagePath);
+
+
             }
             else
             {
@@ -65,40 +64,38 @@ namespace Elebris_WPF_Rpg.Services.Factories
             return GetMonster(location.MonstersHere.Last().MonsterID);
         }
 
-        private static void LoadMonstersFromNodes(XmlNodeList nodes, string rootImagePath)
+        private static void LoadMonstersFromNodes(JArray nodes, string rootImagePath)
         {
             if (nodes == null)
             {
                 return;
             }
 
-            foreach (XmlNode node in nodes)
+            foreach (JToken node in nodes)
             {
                 var attributes = s_gameDetails.PlayerAttributes;
 
-                attributes.First(a => a.Key.Equals("DEX")).BaseValue =
-                    Convert.ToInt32(node.SelectSingleNode("./Dexterity").InnerText);
-                attributes.First(a => a.Key.Equals("DEX")).ModifiedValue =
-                    Convert.ToInt32(node.SelectSingleNode("./Dexterity").InnerText);
+                attributes.First(a => a.Key.Equals("AGI")).BaseValue =
+                    Convert.ToInt32(node["Agility"]);
+                attributes.First(a => a.Key.Equals("AGI")).ModifiedValue =
+                    Convert.ToInt32(node["Agility"]);
 
                 Monster monster =
-                    new Monster(node.AttributeAsInt("ID"),
-                                node.AttributeAsString("Name"),
-                                $".{rootImagePath}{node.AttributeAsString("ImageName")}",
-                                node.AttributeAsInt("MaximumHitPoints"),
+                    new Monster((int)node["ID"],
+                                (string)node["Name"],
+                                $".{rootImagePath}{(string)node["ImageName"]}",
+                                (int)node["MaximumHitPoints"],
                                 attributes,
-                                ItemFactory.CreateGameItem(node.AttributeAsInt("WeaponID")),
-                                node.AttributeAsInt("RewardXP"),
-                                node.AttributeAsInt("Gold"));
+                                ItemFactory.CreateGameItem((int)node["WeaponID"]),
+                                (int)node["RewardXP"],
+                                (int)node["Gold"]);
 
-                XmlNodeList lootItemNodes = node.SelectNodes("./LootItems/LootItem");
-
-                if (lootItemNodes != null)
+                if (node["LootItems"] != null)
                 {
-                    foreach (XmlNode lootItemNode in lootItemNodes)
+                    foreach (JToken lootItemNode in node["LootItems"])
                     {
-                        monster.AddItemToLootTable(lootItemNode.AttributeAsInt("ID"),
-                                                   lootItemNode.AttributeAsInt("Percentage"));
+                        monster.AddItemToLootTable((int)lootItemNode["ID"],
+                                                   (int)lootItemNode["Percentage"]);
                     }
                 }
 

@@ -1,0 +1,80 @@
+{
+  "RootImagePath": "/Images/Locations/",
+  "Monsters": [
+    {
+      "ID": "1",
+      "Name": "Snake",
+      "MaximumHitPoints": "4",
+      "WeaponID": "1501",
+      "RewardXP": "5",
+      "Gold": "1",
+      "ImageName": "Snake.png",
+      "Attributes": [
+        {
+          "Key": "AGI",
+          "Value": "15"
+        }
+      ],
+      "LootItems": [
+        {
+          "ID": "9001",
+          "Percentage": "25"
+        },
+        {
+          "ID": "9002",
+          "Percentage": "75"
+        }
+      ]
+    },
+    {
+      "ID": "2",
+      "Name": "Rat",
+      "MaximumHitPoints": "5",
+      "WeaponID": "1502",
+      "RewardXP": "5",
+      "Gold": "1",
+      "ImageName": "Rat.png",
+      "Attributes": [
+        {
+          "Key": "AGI",
+          "Value": "8"
+        }
+      ],
+      "LootItems": [
+        {
+          "ID": "9003",
+          "Percentage": "25"
+        },
+        {
+          "ID": "9004",
+          "Percentage": "75"
+        }
+      ]
+    },
+    {
+      "ID": "3",
+      "Name": "Giant Spider",
+      "MaximumHitPoints": "10",
+      "WeaponID": "1503",
+      "RewardXP": "10",
+      "Gold": "3",
+      "ImageName": "GiantSpider.png",
+      "Attributes": [
+        {
+          "Key": "AGI",
+          "Value": "12"
+        }
+      ],
+      "LootItems": [
+        {
+          "ID": "9005",
+          "Percentage": "25"
+        },
+        {
+          "ID": "9006",
+          "Percentage": "75"
+        }
+      ]
+    }
+  ]
+}

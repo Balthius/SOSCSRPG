@@ -1,12 +1,11 @@
 ﻿using Elebris_WPF_Rpg.Models;
-using Elebris_WPF_Rpg.Models.Shared;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
     public static class TraderFactory
     {
-        private const string GAME_DATA_FILENAME = ".\\GameData\\Traders.xml";
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Traders.json";
 
         private static readonly List<Trader> _traders = new List<Trader>();
 
@@ -14,10 +13,10 @@ namespace Elebris_WPF_Rpg.Services.Factories
         {
             if (File.Exists(GAME_DATA_FILENAME))
             {
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                JObject data = JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-                LoadTradersFromNodes(data.SelectNodes("/Traders/Trader"));
+                JArray nodes = (JArray)data["Traders"];
+                LoadTradersFromNodes(nodes);
             }
             else
             {
@@ -25,26 +24,25 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
         }
 
-        private static void LoadTradersFromNodes(XmlNodeList nodes)
+        private static void LoadTradersFromNodes(JArray nodes)
         {
-            foreach (XmlNode node in nodes)
+            foreach (JToken node in nodes)
             {
                 Trader trader =
-                    new Trader(node.AttributeAsInt("ID"),
-                               node.SelectSingleNode("./Name")?.InnerText ?? "");
+                    new Trader((int)node["ID"],
+                               (string)node["Name"]);
 
-                foreach (XmlNode childNode in node.SelectNodes("./InventoryItems/Item"))
+                foreach (JToken childNode in node["InventoryItems"])
                 {
-                    int quantity = childNode.AttributeAsInt("Quantity");
+                    int quantity = (int)childNode["Quantity"];
 
                     // Create a new GameItem object for each item we add.
                     // This is to allow for unique items, like swords with enchantments.
                     for (int i = 0; i < quantity; i++)
                     {
-                        trader.AddItemToInventory(ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID")));
+                        trader.AddItemToInventory(ItemFactory.CreateGameItem((int)childNode["ID"]));
                     }
                 }
-
                 _traders.Add(trader);
             }
         }

@@ -135,7 +135,7 @@ namespace Elebris_WPF_Rpg.ViewModels
             // Setup popup window properties
             PlayerDetails = new PopupDetails
             {
-                IsVisible = false,
+                IsVisible = true,
                 Top = 10,
                 Left = 10,
                 MinHeight = 75,
@@ -146,7 +146,7 @@ namespace Elebris_WPF_Rpg.ViewModels
 
             InventoryDetails = new PopupDetails
             {
-                IsVisible = false,
+                IsVisible = true,
                 Top = 500,
                 Left = 10,
                 MinHeight = 75,
@@ -179,7 +179,7 @@ namespace Elebris_WPF_Rpg.ViewModels
 
             GameMessagesDetails = new PopupDetails
             {
-                IsVisible = false,
+                IsVisible = true,
                 Top = 250,
                 Left = 10,
                 MinHeight = 75,

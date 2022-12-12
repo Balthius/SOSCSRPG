@@ -1,12 +1,12 @@
 ﻿using Elebris_WPF_Rpg.Models;
 using Elebris_WPF_Rpg.Models.Shared;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
     public static class WorldFactory
     {
-        private const string GAME_DATA_FILENAME = ".\\GameData\\Locations.xml";
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Locations.json";
 
         public static World CreateWorld()
         {
@@ -14,16 +14,13 @@ namespace Elebris_WPF_Rpg.Services.Factories
 
             if (File.Exists(GAME_DATA_FILENAME))
             {
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                JObject data = JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-                string rootImagePath =
-                    data.SelectSingleNode("/Locations")
-                        .AttributeAsString("RootImagePath");
-
+                string rootImagePath = (string)data["RootImagePath"];
+                JArray nodes = (JArray)data["Locations"];
                 LoadLocationsFromNodes(world,
                                        rootImagePath,
-                                       data.SelectNodes("/Locations/Location"));
+                                      nodes);
             }
             else
             {
@@ -33,67 +30,67 @@ namespace Elebris_WPF_Rpg.Services.Factories
             return world;
         }
 
-        private static void LoadLocationsFromNodes(World world, string rootImagePath, XmlNodeList nodes)
+        private static void LoadLocationsFromNodes(World world, string rootImagePath, JArray nodes)
         {
             if (nodes == null)
             {
                 return;
             }
 
-            foreach (XmlNode node in nodes)
+            foreach (JToken node in nodes)
             {
                 Location location =
-                    new Location(node.AttributeAsInt("X"),
-                                 node.AttributeAsInt("Y"),
-                                 node.AttributeAsString("Name"),
-                                 node.SelectSingleNode("./Description")?.InnerText ?? "",
-                                 $".{rootImagePath}{node.AttributeAsString("ImageName")}");
+                    new Location((int)node["X"],
+                                (int)node["Y"],
+                                (string)node["Name"],
+                                 (string)node["Description"],
+                                 $".{rootImagePath}{(string)node["ImageName"]}");
 
-                AddMonsters(location, node.SelectNodes("./Monsters/Monster"));
-                AddQuests(location, node.SelectNodes("./Quests/Quest"));
-                AddTrader(location, node.SelectSingleNode("./Trader"));
+                AddMonsters(location, (JArray)node["Monsters"]);
+                AddQuests(location, (JArray)node["Quests"]);
+                AddTrader(location, (JToken)node["Trader_Id"]);
 
                 world.AddLocation(location);
             }
         }
 
-        private static void AddMonsters(Location location, XmlNodeList monsters)
+        private static void AddMonsters(Location location, JArray monsters)
         {
             if (monsters == null)
             {
                 return;
             }
 
-            foreach (XmlNode monsterNode in monsters)
+            foreach (JToken monster in monsters)
             {
-                location.AddMonster(monsterNode.AttributeAsInt("ID"),
-                                    monsterNode.AttributeAsInt("Percent"));
+                location.AddMonster((int)monster["ID"],
+                                    (int)monster["Percent"]);
             }
         }
 
-        private static void AddQuests(Location location, XmlNodeList quests)
+        private static void AddQuests(Location location, JArray quests)
         {
             if (quests == null)
             {
                 return;
             }
 
-            foreach (XmlNode questNode in quests)
+            foreach (JToken quest in quests)
             {
                 location.QuestsAvailableHere
-                        .Add(QuestFactory.GetQuestByID(questNode.AttributeAsInt("ID")));
+                        .Add(QuestFactory.GetQuestByID((int)quest["ID"]));
             }
         }
 
-        private static void AddTrader(Location location, XmlNode traderHere)
+        private static void AddTrader(Location location, JToken trader)
         {
-            if (traderHere == null)
+            if (trader == null)
             {
                 return;
             }
 
             location.TraderHere =
-                TraderFactory.GetTraderByID(traderHere.AttributeAsInt("ID"));
+                TraderFactory.GetTraderByID((int)trader);
         }
     }
 }

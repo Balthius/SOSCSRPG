@@ -1,12 +1,11 @@
 ﻿using Elebris_WPF_Rpg.Models;
-using Elebris_WPF_Rpg.Models.Shared;
-using System.Xml;
+using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
     public static class RecipeFactory
     {
-        private const string GAME_DATA_FILENAME = ".\\GameData\\Recipes.xml";
+        private const string GAME_DATA_FILENAME = ".\\GameData\\Recipes.json";
 
         private static readonly List<Recipe> _recipes = new List<Recipe>();
 
@@ -14,10 +13,11 @@ namespace Elebris_WPF_Rpg.Services.Factories
         {
             if (File.Exists(GAME_DATA_FILENAME))
             {
-                XmlDocument data = new XmlDocument();
-                data.LoadXml(File.ReadAllText(GAME_DATA_FILENAME));
+                JObject data = JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-                LoadRecipesFromNodes(data.SelectNodes("/Recipes/Recipe"));
+                JArray nodes = (JArray)data["Recipes"];
+                LoadRecipesFromNodes(nodes);
+             
             }
             else
             {
@@ -25,31 +25,31 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
         }
 
-        private static void LoadRecipesFromNodes(XmlNodeList nodes)
+        private static void LoadRecipesFromNodes(JArray nodes)
         {
-            foreach (XmlNode node in nodes)
+            foreach (JToken node in nodes)
             {
                 var ingredients = new List<ItemQuantity>();
 
-                foreach (XmlNode childNode in node.SelectNodes("./Ingredients/Item"))
+                foreach (JToken childNode in node["Ingredients"])
                 {
-                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    GameItem item = ItemFactory.CreateGameItem((int)childNode["ID"]);
 
-                    ingredients.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
+                    ingredients.Add(new ItemQuantity(item, (int)childNode["Quantity"]));
                 }
 
                 var outputItems = new List<ItemQuantity>();
 
-                foreach (XmlNode childNode in node.SelectNodes("./OutputItems/Item"))
+                foreach (JToken childNode in node["OutputItems"])
                 {
-                    GameItem item = ItemFactory.CreateGameItem(childNode.AttributeAsInt("ID"));
+                    GameItem item = ItemFactory.CreateGameItem((int)childNode["ID"]);
 
-                    outputItems.Add(new ItemQuantity(item, childNode.AttributeAsInt("Quantity")));
+                    outputItems.Add(new ItemQuantity(item, (int)childNode["Quantity"]));
                 }
 
                 Recipe recipe =
-                    new Recipe(node.AttributeAsInt("ID"),
-                        node.SelectSingleNode("./Name")?.InnerText ?? "",
+                    new Recipe((int)node["ID"],
+                        (string)node["Name"],
                         ingredients, outputItems);
 
                 _recipes.Add(recipe);

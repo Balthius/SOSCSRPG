@@ -1,29 +1,91 @@
 {
   "GameItems": {
-    "Weapons": {
-      "Weapon": [
-        "",
-        "",
-        "",
-        "",
-        ""
-      ]
-    },
-    "HealingItems": {
-      "HealingItem": ""
-    },
-    "MiscellaneousItems": {
-      "MiscellaneousItem": [
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        "",
-        ""
-      ]
-    }
+    "Weapons": [
+      {
+        "ID": "1001",
+        "Name": "Pointy stick",
+        "Price": "1",
+        "Damage": "1"
+      },
+      {
+        "ID": "1002",
+        "Name": "Rusty sword",
+        "Price": "5",
+        "Damage": "3"
+      },
+      {
+        "ID": "1501",
+        "Name": "Snake fang",
+        "Price": "0",
+        "Damage": "2"
+      },
+      {
+        "ID": "1502",
+        "Name": "Rat claw",
+        "Price": "0",
+        "Damage": "2"
+      },
+      {
+        "ID": "1503",
+        "Name": "Spider fang",
+        "Price": "0",
+        "Damage": "4"
+      }
+    ],
+    "HealingItems": [
+      {
+        "ID": "2001",
+        "Name": "Granola bar",
+        "Price": "5",
+        "HitPointsToHeal": "2"
+      }
+    ],
+    "MiscellaneousItems": [
+      {
+        "ID": "3001",
+        "Name": "Oats",
+        "Price": "1"
+      },
+      {
+        "ID": "3002",
+        "Name": "Honey",
+        "Price": "2"
+      },
+      {
+        "ID": "3003",
+        "Name": "Raisins",
+        "Price": "2"
+      },
+      {
+        "ID": "9001",
+        "Name": "Snake fang",
+        "Price": "1"
+      },
+      {
+        "ID": "9002",
+        "Name": "Snakeskin",
+        "Price": "2"
+      },
+      {
+        "ID": "9003",
+        "Name": "Rat tail",
+        "Price": "1"
+      },
+      {
+        "ID": "9004",
+        "Name": "Rat fur",
+        "Price": "2"
+      },
+      {
+        "ID": "9005",
+        "Name": "Spider fang",
+        "Price": "1"
+      },
+      {
+        "ID": "9006",
+        "Name": "Spider silk",
+        "Price": "2"
+      }
+    ]
   }
 }
