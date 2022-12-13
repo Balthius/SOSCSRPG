@@ -1,0 +1,96 @@
+{
+  "Attributes": [
+    {
+      "ID": 0,
+      "DisplayDisplayName": "Strength",
+      "Key": "STR",
+      "defaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["light", "red"]
+    },
+    {
+      "ID": 1,
+      "DisplayDisplayName": "Endurance",
+      "Key": "END",
+      "DefaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["dark", "red"]
+    },
+    {
+      "ID": 2,
+      "DisplayDisplayName": "Dexterity",
+      "Key": "DEX",
+      "defaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["light", "green"]
+    },
+    {
+      "ID": 3,
+      "DisplayDisplayName": "Expertise",
+      "Key": "EXT",
+      "defaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["dark", "green"]
+    },
+    {
+      "ID": 4,
+      "DisplayDisplayName": "Wisdom",
+      "Key": "WIS",
+      "defaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["light", "blue"]
+    },
+    {
+      "ID": 5,
+      "DisplayDisplayName": "Intelligence",
+      "Key": "INT",
+      "defaultBaseValue": 10,
+      "BaseBaseValue": 3,
+      "MaxBaseValue": 3,
+      "Tags": ["dark", "blue"]
+    }
+  ],
+  "BaseValues": [
+    {
+      "ID": 6,
+      "DisplayName": "Physical Attack",
+      "BaseValue": 100,
+      "Tags": ["attack", "physical"]
+    },
+    {
+      "ID": 7,
+      "DisplayName": "Ranged Attack",
+      "BaseValue": 100,
+      "Tags": ["attack", "ranged"]
+    },
+    {
+      "ID": 8,
+      "DisplayName": "Spell Attack",
+      "BaseValue": 100,
+      "Tags": ["attack", "spell"]
+    },
+    {
+      "ID": 9,
+      "DisplayName": "Physical Defense",
+      "BaseValue": 100,
+      "Tags": ["defense", "physical"]
+    },
+    {
+      "ID": 10,
+      "DisplayName": "Ranged Defense",
+      "BaseValue": 100,
+      "Tags": ["defense", "ranged"]
+    },
+    {
+      "ID": 11,
+      "DisplayName": "Spell Defense",
+      "BaseValue": 100,
+      "Tags": ["defense", "spell"]
+    }
+  ]
+}

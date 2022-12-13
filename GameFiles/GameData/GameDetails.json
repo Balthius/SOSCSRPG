@@ -2,38 +2,7 @@
   "Title": "Scott's Open Source C# RPG",
   "SubTitle": "The Adventure Continues",
   "Version": "0.1.000",
-  "PlayerAttributes": [
-    {
-      "Key": "STR",
-      "DisplayName": "Strength",
-      "Base": 3
-    },
-    {
-      "Key": "INT",
-      "DisplayName": "Intelligence",
-      "Base": 3
-    },
-    {
-      "Key": "WIS",
-      "DisplayName": "Wisdom",
-      "Base": 3
-    },
-    {
-      "Key": "END",
-      "DisplayName": "Endurance",
-      "Base": 3
-    },
-    {
-      "Key": "AGI",
-      "DisplayName": "Agility",
-      "Base": 3
-    },
-    {
-      "Key": "EXT",
-      "DisplayName": "Expertise",
-      "Base": 3
-    }
-  ],
+  
   "Races": [
     {
       "Key": "HUMAN",
@@ -74,4 +43,9 @@
       ]
     }
   ]
+"BASE_ATTRIBUTE_VALUE : "3",
+"MAX_COMBINED_ATTRIBUTE_TOTAL : "60",
+"MAX_NATURAL_ATTRIBUTE_VALUE :"20",
+"GENERATION_BASE_BIAS : "12",
+"GENERATION_CLASS_BIAS : "9"
 }

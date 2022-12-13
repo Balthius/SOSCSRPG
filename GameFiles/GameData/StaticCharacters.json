@@ -1,0 +1,98 @@
+[
+  {
+    "Guid": "c6faabd1-8bfe-465c-88a4-e208ced383bd",
+    "FirstName": "Paedrig",
+    "LastName": "Wobursen",
+    "Strength": "17",
+    "Constitution": "17",
+    "Agility": "12",
+    "Expertise": "5",
+    "Wisdom": "4",
+    "Intelligence": "5",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "8b803ed7-498e-4214-8ede-b185e1d301e4",
+    "FirstName": "Gavrik",
+    "LastName": "Falkiri",
+    "Strength": "14",
+    "Constitution": "10",
+    "Agility": "8",
+    "Expertise": "8",
+    "Wisdom": "10",
+    "Intelligence": "10",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "d3ea6e4e-941e-4256-9306-efdf5fba01db",
+    "FirstName": "Selene",
+    "LastName": "Astra",
+    "Strength": "4",
+    "Constitution": "4",
+    "Agility": "8",
+    "Expertise": "13",
+    "Wisdom": "18",
+    "Intelligence": "13",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "0b968a8e-7708-4445-9a06-4d6d140de1bb",
+    "FirstName": "Solera",
+    "LastName": "Astra",
+    "Strength": "18",
+    "Constitution": "10",
+    "Agility": "10",
+    "Expertise": "10",
+    "Wisdom": "9",
+    "Intelligence": "3",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "45f90ac4-29a8-422e-beda-8ff274e87f31",
+    "FirstName": "Liam",
+    "LastName": "Hawkridge",
+    "Strength": "4",
+    "Constitution": "3",
+    "Agility": "15",
+    "Expertise": "15",
+    "Wisdom": "6",
+    "Intelligence": "17",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "6db76809-3281-4997-be59-1f952f66464e",
+    "FirstName": "Tikke",
+    "LastName": "Larren",
+    "Strength": "16",
+    "Constitution": "10",
+    "Agility": "18",
+    "Expertise": "6",
+    "Wisdom": "5",
+    "Intelligence": "5",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "211dc4ba-3f76-4454-acb3-4a5242f90f03",
+    "FirstName": "Dane",
+    "LastName": "Gorvis",
+    "Strength": "12",
+    "Constitution": "13",
+    "Agility": "5",
+    "Expertise": "5",
+    "Wisdom": "6",
+    "Intelligence": "19",
+    "Race": "unknown"
+  },
+  {
+    "Guid": "b292e768-7888-4464-8f16-4c808e738afb",
+    "FirstName": "Korr",
+    "LastName": "Coalhorn",
+    "Strength": "20",
+    "Constitution": "16",
+    "Agility": "4",
+    "Expertise": "4",
+    "Wisdom": "11",
+    "Intelligence": "5",
+    "Race": "unknown"
+  }
+]

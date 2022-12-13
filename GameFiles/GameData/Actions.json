@@ -1,0 +1,52 @@
+[
+  {
+    "Name": "Light Punch",
+    "Description": "Basic unarmed attack",
+    "Type": "Attack",
+    "OnUse": {
+      "Cooldown": "20",
+      "ChargeSeconds": "3",
+      "ChargeCapTime": "999",
+      "ChargeMoveSpeedMulti": "0.9",
+      "UseDuration": "0.02",
+      "RecoveryDuration": "0.01"
+    },
+
+    "ResourceCosts": [
+      {
+        "resource_type": "energy",
+        "cost_type": "flat",
+        "Value": "3"
+      }
+    ],
+    "BoolTags": {
+      "and": ["enemy", "alive"],
+      "or": [],
+      "not": ["ally", "ghost", "airborne"]
+    },
+    "Calculations": [
+      {
+        "type": "damage",
+        "tags": ["melee", "physical", "unarmed"],
+        "value": "100",
+        "ticks": "1",
+        "duration": "0.00",
+        "critchance": "0.05"
+      }
+    ],
+    "Lifespantags": [
+      {
+        "type": "targets",
+        "base_value": "2"
+      },
+      {
+        "type": "duration",
+        "base_value": "0.01"
+      },
+      {
+        "type": "distance",
+        "base_value": "100"
+      }
+    ]
+  }
+]

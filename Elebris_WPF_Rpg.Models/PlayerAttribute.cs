@@ -31,11 +31,5 @@ namespace Elebris_WPF_Rpg.Models
             BaseValue = baseValue;
             ModifiedValue = modifiedValue;
         }
-
-        public void ReRoll()
-        {
-            BaseValue = 999;
-            ModifiedValue = BaseValue;
-        }
     }
 }
