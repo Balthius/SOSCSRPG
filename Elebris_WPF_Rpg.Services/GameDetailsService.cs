@@ -19,7 +19,7 @@ namespace Elebris_WPF_Rpg.Services
             foreach (JToken token in gameDetailsJson["PlayerAttributes"])
             {
                 gameDetails.PlayerAttributes.Add(new PlayerAttribute(token.StringValueOf("Key"),
-                                                                     token.StringValueOf("DisplayName"),
+                                                                     token.StringValueOf("Name"),
                                                                      token.IntValueOf("Base")));
             }
 
@@ -30,7 +30,7 @@ namespace Elebris_WPF_Rpg.Services
                     Race race = new Race
                     {
                         Key = token.StringValueOf("Key"),
-                        DisplayName = token.StringValueOf("DisplayName")
+                        DisplayName = token.StringValueOf("Name")
                     };
 
                     if (token["PlayerAttributeModifiers"] != null)

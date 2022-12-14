@@ -4,8 +4,8 @@ namespace Elebris_WPF_Rpg.Models
 {
     public class PlayerAttribute : INotifyPropertyChanged
     {
-        public string Key { get; }
-        public string DisplayName { get; }
+        public string Abbreviation { get; }
+        public string Name { get; }
         public int BaseValue { get; set; }
         public int ModifiedValue { get; set; }
 
@@ -23,11 +23,11 @@ namespace Elebris_WPF_Rpg.Models
 
         // This constructor is eventually called by the others, 
         // or used when reading a Player's attributes from a saved game file.
-        public PlayerAttribute(string key, string displayName,
+        public PlayerAttribute(string abbreviation, string name,
                                int baseValue, int modifiedValue)
         {
-            Key = key;
-            DisplayName = displayName;
+            Abbreviation = abbreviation;
+            Name = name;
             BaseValue = baseValue;
             ModifiedValue = modifiedValue;
         }

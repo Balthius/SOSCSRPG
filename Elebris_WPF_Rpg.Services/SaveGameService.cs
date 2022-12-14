@@ -66,8 +66,8 @@ namespace Elebris_WPF_Rpg.Services
                 [nameof(Player.Attributes)])
             {
                 attributes.Add(new PlayerAttribute(
-                                   (string)itemToken[nameof(PlayerAttribute.Key)],
-                                   (string)itemToken[nameof(PlayerAttribute.DisplayName)],
+                                   (string)itemToken[nameof(PlayerAttribute.Abbreviation)],
+                                   (string)itemToken[nameof(PlayerAttribute.Name)],
                                    (int)itemToken[nameof(PlayerAttribute.BaseValue)],
                                    (int)itemToken[nameof(PlayerAttribute.ModifiedValue)]));
             }

@@ -38,12 +38,6 @@ namespace Elebris_WPF_Rpg.ViewModels
         {
             PlayerAttributes.Clear();
 
-            foreach (PlayerAttribute playerAttribute in GameDetails.PlayerAttributes)
-            {
-                playerAttribute.ReRoll();
-                PlayerAttributes.Add(playerAttribute);
-            }
-
             ApplyAttributeModifiers();
         }
 

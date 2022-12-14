@@ -22,7 +22,7 @@ namespace Elebris_WPF_Rpg.Models.Shared
         public static PlayerAttribute GetAttribute(this LivingEntity entity, string attributeKey)
         {
             return entity.Attributes
-                         .First(pa => pa.Key.Equals(attributeKey,
+                         .First(pa => pa.Abbreviation.Equals(attributeKey,
                                                     StringComparison.CurrentCultureIgnoreCase));
         }
 

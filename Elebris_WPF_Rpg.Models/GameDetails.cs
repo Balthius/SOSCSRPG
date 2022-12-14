@@ -6,8 +6,6 @@
         public string SubTitle { get; }
         public string Version { get; }
 
-        public List<PlayerAttribute> PlayerAttributes { get; } =
-            new List<PlayerAttribute>();
         public List<Race> Races { get; } =
             new List<Race>();
 

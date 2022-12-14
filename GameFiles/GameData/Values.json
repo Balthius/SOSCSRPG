@@ -2,93 +2,93 @@
   "Attributes": [
     {
       "ID": 0,
-      "DisplayDisplayName": "Strength",
-      "Key": "STR",
-      "defaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Strength",
+      "Abbreviation": "STR",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["light", "red"]
     },
     {
       "ID": 1,
-      "DisplayDisplayName": "Endurance",
-      "Key": "END",
-      "DefaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Endurance",
+      "Abbreviation": "END",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["dark", "red"]
     },
     {
       "ID": 2,
-      "DisplayDisplayName": "Dexterity",
-      "Key": "DEX",
-      "defaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Dexterity",
+      "Abbreviation": "DEX",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["light", "green"]
     },
     {
       "ID": 3,
-      "DisplayDisplayName": "Expertise",
-      "Key": "EXT",
-      "defaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Expertise",
+      "Abbreviation": "EXT",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["dark", "green"]
     },
     {
       "ID": 4,
-      "DisplayDisplayName": "Wisdom",
-      "Key": "WIS",
-      "defaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Wisdom",
+      "Abbreviation": "WIS",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["light", "blue"]
     },
     {
       "ID": 5,
-      "DisplayDisplayName": "Intelligence",
-      "Key": "INT",
-      "defaultBaseValue": 10,
-      "BaseBaseValue": 3,
-      "MaxBaseValue": 3,
+      "Name": "Intelligence",
+      "Abbreviation": "INT",
+      "DefaultValue": 10,
+      "BaseValue": 3,
+      "MaxValue": 3,
       "Tags": ["dark", "blue"]
     }
   ],
   "BaseValues": [
     {
       "ID": 6,
-      "DisplayName": "Physical Attack",
+      "Name": "Physical Attack",
       "BaseValue": 100,
       "Tags": ["attack", "physical"]
     },
     {
       "ID": 7,
-      "DisplayName": "Ranged Attack",
+      "Name": "Ranged Attack",
       "BaseValue": 100,
       "Tags": ["attack", "ranged"]
     },
     {
       "ID": 8,
-      "DisplayName": "Spell Attack",
+      "Name": "Spell Attack",
       "BaseValue": 100,
       "Tags": ["attack", "spell"]
     },
     {
       "ID": 9,
-      "DisplayName": "Physical Defense",
+      "Name": "Physical Defense",
       "BaseValue": 100,
       "Tags": ["defense", "physical"]
     },
     {
       "ID": 10,
-      "DisplayName": "Ranged Defense",
+      "Name": "Ranged Defense",
       "BaseValue": 100,
       "Tags": ["defense", "ranged"]
     },
     {
       "ID": 11,
-      "DisplayName": "Spell Defense",
+      "Name": "Spell Defense",
       "BaseValue": 100,
       "Tags": ["defense", "spell"]
     }
