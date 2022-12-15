@@ -49,26 +49,26 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
         }
         //Roll new, unbiased set
-        public static Dictionary<string, StatValue> GenerateAttributeSet()
+        public static List<PlayerAttribute> GenerateAttributeSet()
         {
             Dictionary<string, int> emptyDict = new Dictionary<string, int>();
             return GenerateAttributeSet(emptyDict);
         }
         // return a set grouping of saved attributes
         public static Dictionary<string, StatValue> GenerateAttributeSet(Guid guid)
-        { 
+        {
             //load from a database, flat file etc. based on guid
             //instead of generating, we are going to grab known attribute values for the unit
             throw new NotImplementedException();
         }
         //roll a set of attributes with slight bias towards certain values
-        public static Dictionary<string, StatValue> GenerateAttributeSet(Dictionary<string, int> classAttributes)
+        public static List<PlayerAttribute> GenerateAttributeSet(Dictionary<string, int> classAttributes)
         {
             Dictionary<string, int> biasedAttributes = GenerateCharacterAttributeSpread(classAttributes);
             string[] convertedBiasList = GenerateBiasArray(biasedAttributes);
             Dictionary<string, int> characterAttributes = RollAttributes(convertedBiasList);
 
-            Dictionary<string, StatValue> attributes = ConvertToStatValueDict(characterAttributes);
+            List<PlayerAttribute> attributes = ConvertToAttributeList(characterAttributes);
 
             return attributes;
         }
@@ -76,14 +76,14 @@ namespace Elebris_WPF_Rpg.Services.Factories
         // this adds values to each attribute, so the biases are added to the existing dict format.
         private static Dictionary<string, int> GenerateCharacterAttributeSpread(Dictionary<string, int> biasAttributes)
         {
-           
+
             Dictionary<string, int> charAttributeSpread = new Dictionary<string, int>();
-         
+
             foreach (var att in _baseAttributes)
             {
                 //Set base for new roll
                 charAttributeSpread.Add(att.Name, att.BaseValue);
-                
+
             }
             foreach (var classItem in biasAttributes)
             {   // then add biased values multiplied by the const bias value
@@ -130,13 +130,29 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
             return characterAttributes;
         }
+        //I am unsure if this, or the ConvertToStatValueDict will end up being my prefered approach
+        // but for now I'll use this to minimize change while testing functionality of the app
+        private static List<PlayerAttribute> ConvertToAttributeList(Dictionary<string, int> characterAttributes)
+        {
+            List<PlayerAttribute> attributes = new List<PlayerAttribute>();
+            foreach (var key in characterAttributes.Keys)
+            {
+                string abbreviation = _baseAttributes.First(a => a.Name.Equals(key)).Abbreviation;
+                string name = key;
+                int val = characterAttributes[key]; // get value from key  
+
+                attributes.Add(new PlayerAttribute(abbreviation, name, val));
+            }
+            return attributes;
+        }
+
         private static Dictionary<string, StatValue> ConvertToStatValueDict(Dictionary<string, int> characterAttributes)
-        {   
+        {
             Dictionary<string, StatValue> attributes = new Dictionary<string, StatValue>();
             foreach (var key in characterAttributes.Keys)
             {
                 int val = characterAttributes[key]; // get value from key
-                StatValue statValue = new StatValue( val); // assign value to a statValue
+                StatValue statValue = new StatValue(val); // assign value to a statValue
                 attributes.Add(key, statValue); // add the statvalue in place of the basic int value and return the new dictionary
             }
             return attributes;

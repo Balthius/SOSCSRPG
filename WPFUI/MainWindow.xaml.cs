@@ -17,7 +17,7 @@ namespace WPFUI
     {
         private const string SAVE_GAME_FILE_EXTENSION = "soscsrpg";
 
-        private readonly Dictionary<Key, Action> _userInputActions = 
+        private readonly Dictionary<Key, Action> _userInputActions =
             new Dictionary<Key, Action>();
 
         private GameSession _gameSession;
@@ -75,7 +75,7 @@ namespace WPFUI
 
         private void OnClick_DisplayTradeScreen(object sender, RoutedEventArgs e)
         {
-            if(_gameSession.CurrentTrader != null)
+            if (_gameSession.CurrentTrader != null)
             {
                 TradeScreen tradeScreen = new TradeScreen();
                 tradeScreen.Owner = this;
@@ -108,7 +108,7 @@ namespace WPFUI
 
         private void MainWindow_OnKeyDown(object sender, KeyEventArgs e)
         {
-            if(_userInputActions.ContainsKey(e.Key))
+            if (_userInputActions.ContainsKey(e.Key))
             {
                 _userInputActions[e.Key].Invoke();
 
@@ -171,7 +171,7 @@ namespace WPFUI
             message.Owner = GetWindow(this);
             message.ShowDialog();
 
-            if(message.ClickedYes)
+            if (message.ClickedYes)
             {
                 SaveGame();
             }
@@ -188,8 +188,8 @@ namespace WPFUI
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                SaveGameService.Save(new GameState(_gameSession.CurrentPlayer, 
-                    _gameSession.CurrentLocation.XCoordinate, 
+                SaveGameService.Save(new GameState(_gameSession.CurrentPlayer,
+                    _gameSession.CurrentLocation.XCoordinate,
                     _gameSession.CurrentLocation.YCoordinate), saveFileDialog.FileName);
             }
         }

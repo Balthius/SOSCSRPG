@@ -2,7 +2,7 @@
   "Title": "Scott's Open Source C# RPG",
   "SubTitle": "The Adventure Continues",
   "Version": "0.1.000",
-  
+
   "Races": [
     {
       "Key": "HUMAN",
@@ -42,10 +42,10 @@
         }
       ]
     }
-  ]
-"BASE_ATTRIBUTE_VALUE : "3",
-"MAX_COMBINED_ATTRIBUTE_TOTAL : "60",
-"MAX_NATURAL_ATTRIBUTE_VALUE :"20",
-"GENERATION_BASE_BIAS : "12",
-"GENERATION_CLASS_BIAS : "9"
+  ],
+  "BASE_ATTRIBUTE_VALUE": "3",
+  "MAX_COMBINED_ATTRIBUTE_TOTAL": "60",
+  "MAX_NATURAL_ATTRIBUTE_VALUE": "20",
+  "GENERATION_BASE_BIAS": "12",
+  "GENERATION_CLASS_BIAS": "9"
 }

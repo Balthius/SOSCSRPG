@@ -8,6 +8,7 @@ namespace Elebris_WPF_Rpg.Services
     {
         public static GameDetails ReadGameDetails()
         {
+            //missing bin\Debug\net6.0-windows on my laptop. does the file path need to be altered, or do gamefiles need to be moved up to the root of the project?
             JObject gameDetailsJson =
                 JObject.Parse(File.ReadAllText(".\\GameData\\GameDetails.json"));
 
@@ -15,14 +16,6 @@ namespace Elebris_WPF_Rpg.Services
                 new GameDetails(gameDetailsJson.StringValueOf("Title"),
                                 gameDetailsJson.StringValueOf("SubTitle"),
                                 gameDetailsJson.StringValueOf("Version"));
-
-            foreach (JToken token in gameDetailsJson["PlayerAttributes"])
-            {
-                gameDetails.PlayerAttributes.Add(new PlayerAttribute(token.StringValueOf("Key"),
-                                                                     token.StringValueOf("Name"),
-                                                                     token.IntValueOf("Base")));
-            }
-
             if (gameDetailsJson["Races"] != null)
             {
                 foreach (JToken token in gameDetailsJson["Races"])
@@ -32,19 +25,6 @@ namespace Elebris_WPF_Rpg.Services
                         Key = token.StringValueOf("Key"),
                         DisplayName = token.StringValueOf("Name")
                     };
-
-                    if (token["PlayerAttributeModifiers"] != null)
-                    {
-                        foreach (JToken childToken in token["PlayerAttributeModifiers"])
-                        {
-                            race.PlayerAttributeModifiers.Add(new PlayerAttributeModifier
-                            {
-                                AttributeKey = childToken.StringValueOf("Key"),
-                                Modifier = childToken.IntValueOf("Modifier")
-                            });
-                        }
-                    }
-
                     gameDetails.Races.Add(race);
                 }
             }

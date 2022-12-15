@@ -5,15 +5,15 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-  
+
   <ItemGroup>
-	  <ProjectReference Include="..\Elebris_WPF_Rpg.Core\Elebris_WPF_Rpg.Core.csproj" />
-	  <ProjectReference Include="..\Elebris_WPF_Rpg.Models\Elebris_WPF_Rpg.Models.csproj" />
-	  <ProjectReference Include="..\Elebris_WPF_Rpg.ViewModels\Elebris_WPF_Rpg.ViewModels.csproj" />
+    <ProjectReference Include="..\Elebris_WPF_Rpg.Core\Elebris_WPF_Rpg.Core.csproj" />
+    <ProjectReference Include="..\Elebris_WPF_Rpg.Models\Elebris_WPF_Rpg.Models.csproj" />
+    <ProjectReference Include="..\Elebris_WPF_Rpg.ViewModels\Elebris_WPF_Rpg.ViewModels.csproj" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy $(SolutionDir)GameFiles\*.* $(ProjectDir)$(OutDir) /s /y" />
+    <Exec Command="xcopy $(ProjectDir)..\GameFiles\*.* $(ProjectDir)$(OutDir) /s /y" />
   </Target>
 
 </Project>

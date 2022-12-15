@@ -47,7 +47,7 @@ namespace Elebris_WPF_Rpg.ViewModels
             {
                 var attributeRaceModifier =
                     SelectedRace.PlayerAttributeModifiers
-                                .FirstOrDefault(pam => pam.AttributeKey.Equals(playerAttribute.Key));
+                                .FirstOrDefault(pam => pam.AttributeKey.Equals(playerAttribute.Abbreviation));
 
                 playerAttribute.ModifiedValue =
                     playerAttribute.BaseValue + (attributeRaceModifier?.Modifier ?? 0);

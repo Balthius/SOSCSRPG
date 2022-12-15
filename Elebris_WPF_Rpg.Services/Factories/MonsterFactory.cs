@@ -73,12 +73,7 @@ namespace Elebris_WPF_Rpg.Services.Factories
 
             foreach (JToken node in nodes)
             {
-                var attributes = s_gameDetails.PlayerAttributes;
-
-                attributes.First(a => a.Key.Equals("AGI")).BaseValue =
-                    Convert.ToInt32(node["Agility"]);
-                attributes.First(a => a.Key.Equals("AGI")).ModifiedValue =
-                    Convert.ToInt32(node["Agility"]);
+                var attributes = AttributeSetFactory.GenerateAttributeSet();
 
                 Monster monster =
                     new Monster((int)node["ID"],
