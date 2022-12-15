@@ -23,7 +23,7 @@ namespace Elebris_WPF_Rpg.Services
                     Race race = new Race
                     {
                         Key = token.StringValueOf("Key"),
-                        DisplayName = token.StringValueOf("Name")
+                        DisplayName = token.StringValueOf("DisplayName")
                     };
                     gameDetails.Races.Add(race);
                 }
