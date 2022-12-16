@@ -12,7 +12,7 @@
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/WPFUI/bin/Debug/net6.0-windows/WPFUI.dll",
             "args": [],
-            "cwd": "${workspaceFolder}/WPFUI",
+            "cwd": "${workspaceFolder}/WPFUI/bin/Debug/net6.0-windows",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "internalConsole",
             "stopAtEntry": false

@@ -6,30 +6,43 @@ namespace Elebris_WPF_Rpg.Services
 {
     public static class GameDetailsService
     {
+        //'Could not find a part of the path 'C:\Users\joshf\Documents\Personal\Scott_Lilly_Convert\SOSCSRPG\WPFUI\GameData\GameDetails.json'.'
+        //missing bin\Debug\net6.0-windows on my laptop. does the file path need to be altered, or do gamefiles need to be moved up to the root of the project?
+        //https://jeremybytes.blogspot.com/2020/02/set-working-directory-in-visual-studio.html
+        private const string GAME_DATA_FILENAME = ".\\GameData\\GameDetails.json";
         public static GameDetails ReadGameDetails()
         {
-            //missing bin\Debug\net6.0-windows on my laptop. does the file path need to be altered, or do gamefiles need to be moved up to the root of the project?
-            JObject gameDetailsJson =
-                JObject.Parse(File.ReadAllText(".\\GameData\\GameDetails.json"));
+            if (File.Exists(GAME_DATA_FILENAME))
+            {
+                JObject gameDetailsJson =
+                JObject.Parse(File.ReadAllText(GAME_DATA_FILENAME));
 
-            GameDetails gameDetails =
+                GameDetails gameDetails =
                 new GameDetails(gameDetailsJson.StringValueOf("Title"),
                                 gameDetailsJson.StringValueOf("SubTitle"),
                                 gameDetailsJson.StringValueOf("Version"));
-            if (gameDetailsJson["Races"] != null)
-            {
-                foreach (JToken token in gameDetailsJson["Races"])
+
+                if (gameDetailsJson["Races"] != null)
                 {
-                    Race race = new Race
+                    foreach (JToken token in gameDetailsJson["Races"])
                     {
-                        Key = token.StringValueOf("Key"),
-                        DisplayName = token.StringValueOf("DisplayName")
-                    };
-                    gameDetails.Races.Add(race);
+                        Race race = new Race
+                        {
+                            Key = token.StringValueOf("Key"),
+                            DisplayName = token.StringValueOf("DisplayName")
+                        };
+                        gameDetails.Races.Add(race);
+                    }
                 }
+                return gameDetails;
+            }
+            else
+            {
+                throw new FileNotFoundException($"Missing data file: {GAME_DATA_FILENAME}");
             }
 
-            return gameDetails;
+
+
         }
     }
 }
