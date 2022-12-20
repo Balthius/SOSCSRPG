@@ -9,7 +9,7 @@
       "DisplayName": "Human",
       "PlayerAttributeModifiers": [
         {
-          "Key": "END",
+          "Key": "Strength",
           "Modifier": "1"
         }
       ]
@@ -19,11 +19,11 @@
       "DisplayName": "Elf",
       "PlayerAttributeModifiers": [
         {
-          "Key": "EXT",
+          "Key": "Expertise",
           "Modifier": "1"
         },
         {
-          "Key": "STR",
+          "Key": "Strength",
           "Modifier": "-1"
         }
       ]
@@ -33,11 +33,11 @@
       "DisplayName": "Orc",
       "PlayerAttributeModifiers": [
         {
-          "Key": "EXT",
+          "Key": "Expertise",
           "Modifier": "-1"
         },
         {
-          "Key": "STR",
+          "Key": "Strength",
           "Modifier": "1"
         }
       ]

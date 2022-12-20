@@ -61,14 +61,13 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Attribute"
-                                    Binding="{Binding DisplayName}"
+                                    Binding="{Binding Name}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Value"
                                     Binding="{Binding BaseValue}"/>
-                <DataGridTextColumn Header="Modified"
-                                    Binding="{Binding ModifiedValue}"
-                                    Visibility="{Binding HasRaceAttributeModifiers, 
-                                                 Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                <DataGridTextColumn Header="Bias"
+                                    Binding="{Binding BiasValue}"/>
+               
             </DataGrid.Columns>
 
         </DataGrid>

@@ -69,7 +69,7 @@ namespace Elebris_WPF_Rpg.Services
                                    (string)itemToken[nameof(PlayerAttribute.Abbreviation)],
                                    (string)itemToken[nameof(PlayerAttribute.Name)],
                                    (int)itemToken[nameof(PlayerAttribute.BaseValue)],
-                                   (int)itemToken[nameof(PlayerAttribute.ModifiedValue)]));
+                                   (int)itemToken[nameof(PlayerAttribute.BiasValue)]));
             }
 
             return attributes;

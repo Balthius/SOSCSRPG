@@ -2,7 +2,7 @@
 {
     public class PlayerAttributeModifier
     {
-        public string AttributeKey { get; init; }
+        public string AttributeName { get; init; }
         public int Modifier { get; init; }
     }
 }

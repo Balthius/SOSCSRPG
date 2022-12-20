@@ -37,20 +37,30 @@ namespace Elebris_WPF_Rpg.ViewModels
         public void RollNewCharacter()
         {
             PlayerAttributes.Clear();
-
-            ApplyAttributeModifiers();
+            Dictionary<string, int> modifiers = new Dictionary<string, int>();
+            foreach(PlayerAttributeModifier mod in SelectedRace.PlayerAttributeModifiers)
+            {
+                modifiers.Add(mod.AttributeName, mod.Modifier);
+            }
+            List<PlayerAttribute> new_attributes = AttributeSetFactory.GenerateAttributeSet(modifiers);
+            
+            foreach (PlayerAttribute playerAttribute in new_attributes)
+            {
+                PlayerAttributes.Add(playerAttribute);
+            }
+            
         }
 
-        public void ApplyAttributeModifiers()
+        public void ApplyAttributeBias()
         {
             foreach (PlayerAttribute playerAttribute in PlayerAttributes)
             {
                 var attributeRaceModifier =
                     SelectedRace.PlayerAttributeModifiers
-                                .FirstOrDefault(pam => pam.AttributeKey.Equals(playerAttribute.Abbreviation));
+                                .FirstOrDefault(pam => pam.AttributeName.Equals(playerAttribute.Name));
 
-                playerAttribute.ModifiedValue =
-                    playerAttribute.BaseValue + (attributeRaceModifier?.Modifier ?? 0);
+                int val = attributeRaceModifier?.Modifier ?? 0;
+                playerAttribute.BiasValue = val;
             }
         }
 

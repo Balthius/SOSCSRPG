@@ -30,7 +30,18 @@ namespace Elebris_WPF_Rpg.Services
                         {
                             Key = token.StringValueOf("Key"),
                             DisplayName = token.StringValueOf("DisplayName")
+                            
                         };
+                        JArray mods = (JArray)token["PlayerAttributeModifiers"];
+                        foreach (JToken mod in mods)
+                        {
+                            PlayerAttributeModifier new_mod = new PlayerAttributeModifier
+                            {
+                                AttributeName = mod.StringValueOf("Key"),
+                                Modifier = mod.IntValueOf("Modifier")
+                            };
+                            race.PlayerAttributeModifiers.Add(new_mod);
+                        }
                         gameDetails.Races.Add(race);
                     }
                 }

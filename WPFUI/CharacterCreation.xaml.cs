@@ -30,7 +30,7 @@ namespace WPFUI
 
         private void Race_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            VM.ApplyAttributeModifiers();
+            VM.ApplyAttributeBias();
         }
     }
 }
