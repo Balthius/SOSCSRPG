@@ -21,30 +21,6 @@ namespace Elebris_WPF_Rpg.Services
                 new GameDetails(gameDetailsJson.StringValueOf("Title"),
                                 gameDetailsJson.StringValueOf("SubTitle"),
                                 gameDetailsJson.StringValueOf("Version"));
-
-                if (gameDetailsJson["Races"] != null)
-                {
-                    foreach (JToken token in gameDetailsJson["Races"])
-                    {
-                        Race race = new Race
-                        {
-                            Key = token.StringValueOf("Key"),
-                            DisplayName = token.StringValueOf("DisplayName")
-                            
-                        };
-                        JArray mods = (JArray)token["PlayerAttributeModifiers"];
-                        foreach (JToken mod in mods)
-                        {
-                            PlayerAttributeModifier new_mod = new PlayerAttributeModifier
-                            {
-                                AttributeName = mod.StringValueOf("Key"),
-                                Modifier = mod.IntValueOf("Modifier")
-                            };
-                            race.PlayerAttributeModifiers.Add(new_mod);
-                        }
-                        gameDetails.Races.Add(race);
-                    }
-                }
                 return gameDetails;
             }
             else

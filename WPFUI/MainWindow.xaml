@@ -193,9 +193,9 @@
                                         </Grid>
                                         <Grid>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition SharedSizeGroup="ModifiedValue"/>
+                                                <ColumnDefinition SharedSizeGroup="BaseValue"/>
                                             </Grid.ColumnDefinitions>
-                                            <TextBlock Text="{Binding ModifiedValue}"
+                                            <TextBlock Text="{Binding BaseValue}"
                                                        HorizontalAlignment="Right"/>
                                         </Grid>
                                     </StackPanel>

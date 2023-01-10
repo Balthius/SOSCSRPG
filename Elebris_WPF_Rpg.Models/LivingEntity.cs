@@ -17,6 +17,7 @@ namespace Elebris_WPF_Rpg.Models
         public ObservableCollection<PlayerAttribute> Attributes { get; } =
             new ObservableCollection<PlayerAttribute>();
 
+
         public string Name { get; }
         public int CurrentHitPoints { get; private set; }
         public int MaximumHitPoints { get; protected set; }
@@ -87,7 +88,6 @@ namespace Elebris_WPF_Rpg.Models
             {
                 Attributes.Add(attribute);
             }
-
             Inventory = new Inventory();
         }
 

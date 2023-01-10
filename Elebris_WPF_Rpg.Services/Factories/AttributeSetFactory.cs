@@ -37,7 +37,6 @@ namespace Elebris_WPF_Rpg.Services.Factories
             {
                 return;
             }
-
             foreach (JToken node in nodes)
             {
                 PlayerAttribute attribute =
@@ -83,7 +82,6 @@ namespace Elebris_WPF_Rpg.Services.Factories
             {
                 //Set base for new roll
                 charAttributeSpread.Add(att.Name, att.BaseValue);
-
             }
             foreach (var classItem in biasAttributes)
             {   // then add biased values multiplied by the const bias value

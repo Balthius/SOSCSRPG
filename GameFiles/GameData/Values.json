@@ -92,5 +92,13 @@
       "BaseValue": 100,
       "Tags": ["defense", "spell"]
     }
-  ]
+  ],
+  "CoreValues": 
+  {
+  "BASE_ATTRIBUTE_VALUE": "3",
+  "MAX_COMBINED_ATTRIBUTE_TOTAL": "60",
+  "MAX_NATURAL_ATTRIBUTE_VALUE": "20",
+  "GENERATION_BASE_BIAS": "12",
+  "GENERATION_CLASS_BIAS": "9"
+  }
 }

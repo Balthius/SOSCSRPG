@@ -17,6 +17,9 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
@@ -50,8 +53,27 @@
                   SelectedItem="{Binding SelectedRace, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                   SelectionChanged="Race_OnSelectionChanged"
                   Visibility="{Binding HasRaces, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <!-- Character Bias -->
+        <DataGrid Grid.Row="4" Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  ItemsSource="{Binding BiasValues}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  HeadersVisibility="Column">
 
-        <DataGrid Grid.Row="3" Grid.Column="0"
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Modifier"
+                                    Binding="{Binding AttributeName}"
+                                    Width="*"/>
+                <DataGridTextColumn Header="Value"
+                                    Binding="{Binding Modifier}"/>
+
+            </DataGrid.Columns>
+
+        </DataGrid>
+        <!-- Character Attributes -->
+        <DataGrid Grid.Row="6" Grid.Column="0"
                   Grid.ColumnSpan="2"
                   ItemsSource="{Binding PlayerAttributes}"
                   AutoGenerateColumns="False"
@@ -65,14 +87,12 @@
                                     Width="*"/>
                 <DataGridTextColumn Header="Value"
                                     Binding="{Binding BaseValue}"/>
-                <DataGridTextColumn Header="Bias"
-                                    Binding="{Binding BiasValue}"/>
-               
+        
             </DataGrid.Columns>
 
         </DataGrid>
 
-        <Grid Grid.Row="4" Grid.Column="0"
+        <Grid Grid.Row="7" Grid.Column="0"
                   Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

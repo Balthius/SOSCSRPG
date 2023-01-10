@@ -12,23 +12,27 @@ namespace Elebris_WPF_Rpg.ViewModels
 
         public GameDetails GameDetails { get; }
         public Race SelectedRace { get; init; }
+        private List<Race> Races { get; init; }
         public string Name { get; init; }
         public ObservableCollection<PlayerAttribute> PlayerAttributes { get; } =
-            new ObservableCollection<PlayerAttribute>();
+            new ObservableCollection<PlayerAttribute>(); // what will be used to create the character after we "accept" them
+
+        public ObservableCollection<PlayerAttributeModifier> BiasValues { get; } =
+            new ObservableCollection<PlayerAttributeModifier>(); // after character creation does not need to be recreated
 
         public bool HasRaces =>
-            GameDetails.Races.Any();
+            Races.Any();
 
         public bool HasRaceAttributeModifiers =>
-            HasRaces && GameDetails.Races.Any(r => r.PlayerAttributeModifiers.Any());
+            Races.Any(r => r.PlayerAttributeModifiers.Any());
 
         public CharacterCreationViewModel()
         {
             GameDetails = GameDetailsService.ReadGameDetails();
-
+            Races = CharacterRaceFactory.GetRaces();
             if (HasRaces)
             {
-                SelectedRace = GameDetails.Races.First();
+                SelectedRace = Races.First();
             }
 
             RollNewCharacter();
@@ -37,8 +41,10 @@ namespace Elebris_WPF_Rpg.ViewModels
         public void RollNewCharacter()
         {
             PlayerAttributes.Clear();
+            // after reseting the character, take all modifiers from race, class etc and use it to create a new dict to generate stats from
             Dictionary<string, int> modifiers = new Dictionary<string, int>();
-            foreach(PlayerAttributeModifier mod in SelectedRace.PlayerAttributeModifiers)
+            //convert from attributeModifiers to a dict
+            foreach(var mod in BiasValues)
             {
                 modifiers.Add(mod.AttributeName, mod.Modifier);
             }
@@ -53,14 +59,18 @@ namespace Elebris_WPF_Rpg.ViewModels
 
         public void ApplyAttributeBias()
         {
-            foreach (PlayerAttribute playerAttribute in PlayerAttributes)
+            //Apply bias from Race, Class
+            foreach (PlayerAttributeModifier bias in BiasValues)
             {
-                var attributeRaceModifier =
-                    SelectedRace.PlayerAttributeModifiers
-                                .FirstOrDefault(pam => pam.AttributeName.Equals(playerAttribute.Name));
 
-                int val = attributeRaceModifier?.Modifier ?? 0;
-                playerAttribute.BiasValue = val;
+                //Get Values From Race
+                PlayerAttributeModifier attributeRaceModifier =
+                    SelectedRace.PlayerAttributeModifiers
+                                .FirstOrDefault(pam => pam.AttributeName.Equals(bias.AttributeName));
+
+                int raceVal = attributeRaceModifier?.Modifier ?? 0;
+                bias.Modifier += raceVal;
+                // End Raceval
             }
         }
 

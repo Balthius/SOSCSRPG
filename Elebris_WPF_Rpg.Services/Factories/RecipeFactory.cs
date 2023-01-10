@@ -1,4 +1,5 @@
 ﻿using Elebris_WPF_Rpg.Models;
+using Elebris_WPF_Rpg.Services.Factories;
 using Newtonsoft.Json.Linq;
 
 namespace Elebris_WPF_Rpg.Services.Factories
