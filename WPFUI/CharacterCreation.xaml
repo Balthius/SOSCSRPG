@@ -64,10 +64,10 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Modifier"
-                                    Binding="{Binding AttributeName}"
+                                    Binding="{Binding AttributeName, Mode=OneWay}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Value"
-                                    Binding="{Binding Modifier}"/>
+                                    Binding="{Binding Modifier, Mode=OneWay}"/>
 
             </DataGrid.Columns>
 
@@ -83,10 +83,10 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Attribute"
-                                    Binding="{Binding Name}"
+                                    Binding="{Binding Name, Mode=OneWay}"
                                     Width="*"/>
                 <DataGridTextColumn Header="Value"
-                                    Binding="{Binding BaseValue}"/>
+                                    Binding="{Binding BaseValue, Mode=OneWay}"/>
         
             </DataGrid.Columns>
 

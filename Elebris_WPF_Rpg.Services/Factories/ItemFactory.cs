@@ -49,8 +49,7 @@ namespace Elebris_WPF_Rpg.Services.Factories
                     new GameItem(itemCategory,
                                  (int)node["ID"],
                                  (string)node[nameof(gameItem.Name)],
-                                 (int)node[nameof(gameItem.Price)],
-                                 itemCategory == GameItem.ItemCategory.Weapon);
+                                 (int)node[nameof(gameItem.Price)]);
 
                 if (itemCategory == GameItem.ItemCategory.Weapon)
                 {

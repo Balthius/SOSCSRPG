@@ -24,7 +24,7 @@
             if (AttackSucceeded(actor, target))
             {
                 //Fake Value: Not using a dice System
-                int damage = 999;
+                int damage = _damage;
 
                 ReportResult($"{actorName} hit {targetName} for {damage} point{(damage > 1 ? "s" : "")}.");
 
@@ -38,8 +38,15 @@
 
         private static bool AttackSucceeded(LivingEntity attacker, LivingEntity target)
         {
-            //Fake Value: Not using a dice System
-            return false;
+
+            Random rand = new Random();
+
+            if(rand.Next(100) < 70)
+            {
+                return false;
+            }
+            //Fake Value: Not using a dice System and setting a static 30% hit chance
+            return true;
         }
     }
 }

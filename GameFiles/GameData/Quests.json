@@ -2,6 +2,7 @@
   "Quests": [
     {
       "ID": "1",
+	"Name": "Snake Slayer",
       "RewardExperiencePoints": "25",
       "RewardGold": "10",
       "Description": "Defeat the snakes in the Herbalist's garden.",

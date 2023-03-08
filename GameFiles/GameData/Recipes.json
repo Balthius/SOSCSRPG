@@ -2,7 +2,7 @@
   "Recipes": [
     {
       "ID": "1",
-      "Name": "Grandola Bar",
+      "Name": "Granola Bar",
       "Ingredients": [
         {
           "ID": "3001",
@@ -19,7 +19,7 @@
       ],
       "OutputItems": [
         {
-          "ID": "20001",
+          "ID": "2001",
           "Quantity": 1
         }
       ]

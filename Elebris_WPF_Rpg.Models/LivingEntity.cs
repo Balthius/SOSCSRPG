@@ -16,8 +16,10 @@ namespace Elebris_WPF_Rpg.Models
 
         public ObservableCollection<PlayerAttribute> Attributes { get; } =
             new ObservableCollection<PlayerAttribute>();
+        public ObservableCollection<StatValue> Stats { get; } =
+            new ObservableCollection<StatValue>();
 
-
+        // Resources
         public string Name { get; }
         public int CurrentHitPoints { get; private set; }
         public int MaximumHitPoints { get; protected set; }
