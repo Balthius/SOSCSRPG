@@ -4,16 +4,13 @@
       "ID": 0,
       "Name": "Strength",
       "Abbreviation": "STR",
-      "DefaultValue": 10,
       "BaseValue": 3,
-      "MaxValue": 3,
       "Tags": ["light", "red"]
     },
     {
       "ID": 1,
       "Name": "Endurance",
       "Abbreviation": "END",
-      "DefaultValue": 10,
       "BaseValue": 3,
       "MaxValue": 3,
       "Tags": ["dark", "red"]
@@ -22,36 +19,28 @@
       "ID": 2,
       "Name": "Dexterity",
       "Abbreviation": "DEX",
-      "DefaultValue": 10,
       "BaseValue": 3,
-      "MaxValue": 3,
       "Tags": ["light", "green"]
     },
     {
       "ID": 3,
       "Name": "Expertise",
       "Abbreviation": "EXT",
-      "DefaultValue": 10,
       "BaseValue": 3,
-      "MaxValue": 3,
       "Tags": ["dark", "green"]
     },
     {
       "ID": 4,
       "Name": "Wisdom",
       "Abbreviation": "WIS",
-      "DefaultValue": 10,
       "BaseValue": 3,
-      "MaxValue": 3,
       "Tags": ["light", "blue"]
     },
     {
       "ID": 5,
       "Name": "Intelligence",
       "Abbreviation": "INT",
-      "DefaultValue": 10,
       "BaseValue": 3,
-      "MaxValue": 3,
       "Tags": ["dark", "blue"]
     }
   ],
@@ -92,13 +81,5 @@
       "BaseValue": 100,
       "Tags": ["defense", "spell"]
     }
-  ],
-  "CoreValues": 
-  {
-  "BASE_ATTRIBUTE_VALUE": "3",
-  "MAX_COMBINED_ATTRIBUTE_TOTAL": "60",
-  "MAX_NATURAL_ATTRIBUTE_VALUE": "20",
-  "GENERATION_BASE_BIAS": "12",
-  "GENERATION_CLASS_BIAS": "9"
-  }
+  ]
 }

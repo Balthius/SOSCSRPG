@@ -1,5 +1,6 @@
 ﻿using Elebris_WPF_Rpg.Models;
 using Newtonsoft.Json.Linq;
+using System.Runtime.InteropServices;
 
 namespace Elebris_WPF_Rpg.Services.Factories
 {
@@ -7,7 +8,13 @@ namespace Elebris_WPF_Rpg.Services.Factories
     {
         private const string GAME_DATA_FILENAME = ".\\GameData\\Values.json";
 
-        private const int DEFAULT_BIAS_VALUE = 9;
+        // these impact stat spread
+
+        private const int DEFAULT_BIAS_VALUE = 10;
+
+        private const int MODIFIER_BIAS_VALUE = 3;
+
+        // These are Limiters once biases are rolled
 
         private const int DEFAULT_MAX_TOTAL_VALUE = 60;
 
@@ -81,11 +88,12 @@ namespace Elebris_WPF_Rpg.Services.Factories
             foreach (var att in _baseAttributes)
             {
                 //Set base for new roll
-                charAttributeSpread.Add(att.Name, att.BaseValue);
+                charAttributeSpread.Add(att.Name, DEFAULT_BIAS_VALUE);
             }
             foreach (var classItem in biasAttributes)
             {   // then add biased values multiplied by the const bias value
-                charAttributeSpread[classItem.Key] += classItem.Value * DEFAULT_BIAS_VALUE;
+                charAttributeSpread[classItem.Key] += classItem.Value * MODIFIER_BIAS_VALUE;
+               
             }
             return charAttributeSpread;
         }
@@ -98,23 +106,36 @@ namespace Elebris_WPF_Rpg.Services.Factories
             {
                 for (int i = 0; i < biasList.Count; i++)//for each "Attribute slot"
                 {
-                    for (int j = 0; j < biasList.ElementAt(i).Value; j++)// add a number of AttributeData values to a list, minimum of base * attributes (so 3 * 6 for my uses) maximum of base * attributes plus all bias values
+                    if(biasList.ElementAt(i).Value > 0)
                     {
+                        for (int j = 0; j < biasList.ElementAt(i).Value; j++)// add a number of AttributeData values to a list, minimum of base * attributes (so 3 * 6 for my uses) maximum of base * attributes plus all bias values
+                        {
+                            biasDataList.Add(biasList.ElementAt(i).Key);
+                        }
+                    }
+                    {
+                        //adds a single point (chance), regardless of how negative modifiers are. Realistically it would take 3 or more negative points to equal that low chance, so it shouldn't occur
                         biasDataList.Add(biasList.ElementAt(i).Key);
                     }
+                   
                 }
             }
             //returns a large list filled with different attribute values
             return biasDataList.ToArray();
         }
 
+
+
+        // Create a new, empty dict
+        // create key/pairs with base values from the _baseAttributes dict
+        // begin to roll for attributes from the coonverted Bias list (default 10/60 chance with an extra 3 per modifier point
         private static Dictionary<string, int> RollAttributes(string[] convertedBiasList)
         {
             Random rand = new Random();
             Dictionary<string, int> characterAttributes = new Dictionary<string, int>();
             foreach (var item in _baseAttributes)
             {
-                characterAttributes[item.Name] = 1;
+                characterAttributes[item.Name] = item.BaseValue;
             }
 
             while (characterAttributes.Sum(item => item.Value) < DEFAULT_MAX_TOTAL_VALUE)

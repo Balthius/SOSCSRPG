@@ -26,15 +26,15 @@ namespace Elebris_WPF_Rpg.Services.Factories
                         DisplayName = token.StringValueOf("DisplayName")
 
                     };
-                    JArray mods = (JArray)token["PlayerAttributeModifiers"];
+                    JArray mods = (JArray)token["BiasModifiers"];
                     foreach (JToken mod in mods)
                     {
-                        PlayerAttributeModifier new_mod = new PlayerAttributeModifier
+                        BiasModifier new_mod = new BiasModifier
                         {
                             AttributeName = mod.StringValueOf("Key"),
                             Modifier = mod.IntValueOf("Modifier")
                         };
-                        race.PlayerAttributeModifiers.Add(new_mod);
+                        race.BiasModifiers.Add(new_mod);
                     }
                     _races.Add(race);
                 }
@@ -55,14 +55,14 @@ namespace Elebris_WPF_Rpg.Services.Factories
                     DisplayName = item.DisplayName
                 };
 
-                foreach (var mod in race.PlayerAttributeModifiers)
+                foreach (var mod in item.BiasModifiers)
                 {
-                    PlayerAttributeModifier new_mod = new PlayerAttributeModifier
+                    BiasModifier new_mod = new BiasModifier
                     { 
                         AttributeName = mod.AttributeName,
                         Modifier = mod.Modifier
                     };
-                    race.PlayerAttributeModifiers.Add(new_mod);
+                    race.BiasModifiers.Add(new_mod);
                 }
                 Races.Add(race);
             }

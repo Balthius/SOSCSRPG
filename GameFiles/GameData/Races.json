@@ -3,7 +3,7 @@
     {
       "Key": "HUMAN",
       "DisplayName": "Human",
-      "PlayerAttributeModifiers": [
+      "BiasModifiers": [
         {
           "Key": "Strength",
           "Modifier": "1"
@@ -13,7 +13,7 @@
     {
       "Key": "ELF",
       "DisplayName": "Elf",
-      "PlayerAttributeModifiers": [
+      "BiasModifiers": [
         {
           "Key": "Expertise",
           "Modifier": "1"
@@ -27,7 +27,7 @@
     {
       "Key": "ORC",
       "DisplayName": "Orc",
-      "PlayerAttributeModifiers": [
+      "BiasModifiers": [
         {
           "Key": "Expertise",
           "Modifier": "-1"

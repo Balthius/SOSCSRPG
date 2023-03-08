@@ -12,19 +12,19 @@ namespace Elebris_WPF_Rpg.ViewModels
 
         public GameDetails GameDetails { get; }
         public Race SelectedRace { get; init; }
-        private List<Race> Races { get; init; }
+        public List<Race> Races { get; init; }
         public string Name { get; init; }
         public ObservableCollection<PlayerAttribute> PlayerAttributes { get; } =
             new ObservableCollection<PlayerAttribute>(); // what will be used to create the character after we "accept" them
 
-        public ObservableCollection<PlayerAttributeModifier> BiasValues { get; } =
-            new ObservableCollection<PlayerAttributeModifier>(); // after character creation does not need to be recreated
+        public ObservableCollection<BiasModifier> BiasValues { get; } =
+            new ObservableCollection<BiasModifier>(); // after character creation does not need to be recreated
 
         public bool HasRaces =>
             Races.Any();
 
         public bool HasRaceAttributeModifiers =>
-            Races.Any(r => r.PlayerAttributeModifiers.Any());
+            Races.Any(r => r.BiasModifiers.Any());
 
         public CharacterCreationViewModel()
         {
@@ -48,30 +48,41 @@ namespace Elebris_WPF_Rpg.ViewModels
             {
                 modifiers.Add(mod.AttributeName, mod.Modifier);
             }
-            List<PlayerAttribute> new_attributes = AttributeSetFactory.GenerateAttributeSet(modifiers);
+           List<PlayerAttribute> new_attributes = AttributeSetFactory.GenerateAttributeSet(modifiers);
             
             foreach (PlayerAttribute playerAttribute in new_attributes)
             {
                 PlayerAttributes.Add(playerAttribute);
             }
-            
+        }
+
+        private void StackBiases(string name, int modifier)
+        {
+            BiasModifier biasModifier = BiasValues.FirstOrDefault(pam => pam.AttributeName.Equals(name));
+            if (biasModifier != null)
+            {
+                biasModifier.Modifier += modifier;
+            }
+            else
+            {
+                BiasModifier newModifier = new BiasModifier
+                {
+                    AttributeName = name,
+                    Modifier = modifier
+                };
+                BiasValues.Add(newModifier);
+            }
         }
 
         public void ApplyAttributeBias()
         {
-            //Apply bias from Race, Class
-            foreach (PlayerAttributeModifier bias in BiasValues)
+           BiasValues.Clear();
+            //Apply bias from Race
+            foreach (BiasModifier bias in SelectedRace.BiasModifiers)
             {
-
-                //Get Values From Race
-                PlayerAttributeModifier attributeRaceModifier =
-                    SelectedRace.PlayerAttributeModifiers
-                                .FirstOrDefault(pam => pam.AttributeName.Equals(bias.AttributeName));
-
-                int raceVal = attributeRaceModifier?.Modifier ?? 0;
-                bias.Modifier += raceVal;
-                // End Raceval
+               StackBiases(bias.AttributeName, bias.Modifier);
             }
+            //TODO Class
         }
 
         public Player GetPlayer()

@@ -2,7 +2,7 @@
 
 namespace Elebris_WPF_Rpg.Models
 {
-    public class PlayerAttributeModifier
+    public class BiasModifier
     {
         public string AttributeName { get; init; }
         public int Modifier { get; set; }

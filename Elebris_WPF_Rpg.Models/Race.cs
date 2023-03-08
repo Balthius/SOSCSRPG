@@ -4,7 +4,7 @@
     {
         public string Key { get; set; }
         public string DisplayName { get; set; }
-        public List<PlayerAttributeModifier> PlayerAttributeModifiers { get; } =
-            new List<PlayerAttributeModifier>();
+        public List<BiasModifier> BiasModifiers { get; } =
+            new List<BiasModifier>();
     }
 }
