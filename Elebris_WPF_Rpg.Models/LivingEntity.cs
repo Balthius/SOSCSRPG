@@ -14,8 +14,8 @@ namespace Elebris_WPF_Rpg.Models
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<PlayerAttribute> Attributes { get; } =
-            new ObservableCollection<PlayerAttribute>();
+        public ObservableCollection<ValueDataModel> Attributes { get; } =
+            new ObservableCollection<ValueDataModel>();
         public ObservableCollection<StatValue> Stats { get; } =
             new ObservableCollection<StatValue>();
 
@@ -78,7 +78,7 @@ namespace Elebris_WPF_Rpg.Models
         public event EventHandler OnKilled;
 
         protected LivingEntity(string name, int maximumHitPoints, int currentHitPoints,
-                               IEnumerable<PlayerAttribute> attributes, int gold, int level = 1)
+                               IEnumerable<ValueDataModel> attributes, int gold, int level = 1)
         {
             Name = name;
             MaximumHitPoints = maximumHitPoints;
@@ -86,7 +86,7 @@ namespace Elebris_WPF_Rpg.Models
             Gold = gold;
             Level = level;
 
-            foreach (PlayerAttribute attribute in attributes)
+            foreach (ValueDataModel attribute in attributes)
             {
                 Attributes.Add(attribute);
             }

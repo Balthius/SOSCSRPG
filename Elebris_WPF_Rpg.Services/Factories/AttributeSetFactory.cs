@@ -20,7 +20,7 @@ namespace Elebris_WPF_Rpg.Services.Factories
 
         private const int DEFAULT_MAX_ATTRIBUTE_VALUE = 20;
 
-        private static readonly List<PlayerAttribute> _baseAttributes = new List<PlayerAttribute>();
+        private static readonly List<ValueDataModel> _baseAttributes = new List<ValueDataModel>();
 
         static AttributeSetFactory()
         {
@@ -46,16 +46,16 @@ namespace Elebris_WPF_Rpg.Services.Factories
             }
             foreach (JToken node in nodes)
             {
-                PlayerAttribute attribute =
-                    new PlayerAttribute(
-                                 (string)node[nameof(PlayerAttribute.Abbreviation)],
-                                 (string)node[nameof(PlayerAttribute.Name)],
-                                 (int)node[nameof(PlayerAttribute.BaseValue)]);
+                ValueDataModel attribute =
+                    new ValueDataModel(
+                                 (string)node[nameof(ValueDataModel.Abbreviation)],
+                                 (string)node[nameof(ValueDataModel.Name)],
+                                 (int)node[nameof(ValueDataModel.BaseValue)]);
                 _baseAttributes.Add(attribute);
             }
         }
         //Roll new, unbiased set
-        public static List<PlayerAttribute> GenerateAttributeSet()
+        public static List<ValueDataModel> GenerateAttributeSet()
         {
             Dictionary<string, int> emptyDict = new Dictionary<string, int>();
             return GenerateAttributeSet(emptyDict);
@@ -68,13 +68,13 @@ namespace Elebris_WPF_Rpg.Services.Factories
             throw new NotImplementedException();
         }
         //roll a set of attributes with slight bias towards certain values
-        public static List<PlayerAttribute> GenerateAttributeSet(Dictionary<string, int> classAttributes)
+        public static List<ValueDataModel> GenerateAttributeSet(Dictionary<string, int> classAttributes)
         {
             Dictionary<string, int> biasedAttributes = GenerateCharacterAttributeSpread(classAttributes);
             string[] convertedBiasList = GenerateBiasArray(biasedAttributes);
             Dictionary<string, int> characterAttributes = RollAttributes(convertedBiasList);
 
-            List<PlayerAttribute> attributes = ConvertToAttributeList(characterAttributes);
+            List<ValueDataModel> attributes = ConvertToAttributeList(characterAttributes);
 
             return attributes;
         }
@@ -151,16 +151,16 @@ namespace Elebris_WPF_Rpg.Services.Factories
         }
         //I am unsure if this, or the ConvertToStatValueDict will end up being my prefered approach
         // but for now I'll use this to minimize change while testing functionality of the app
-        private static List<PlayerAttribute> ConvertToAttributeList(Dictionary<string, int> characterAttributes)
+        private static List<ValueDataModel> ConvertToAttributeList(Dictionary<string, int> characterAttributes)
         {
-            List<PlayerAttribute> attributes = new List<PlayerAttribute>();
+            List<ValueDataModel> attributes = new List<ValueDataModel>();
             foreach (var key in characterAttributes.Keys)
             {
                 string abbreviation = _baseAttributes.First(a => a.Name.Equals(key)).Abbreviation;
                 string name = key;
                 int val = characterAttributes[key]; // get value from key  
 
-                attributes.Add(new PlayerAttribute(abbreviation, name, val));
+                attributes.Add(new ValueDataModel(abbreviation, name, val));
             }
             return attributes;
         }

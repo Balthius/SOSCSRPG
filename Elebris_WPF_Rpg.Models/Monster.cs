@@ -9,7 +9,7 @@
             new List<ItemPercentage>();
 
         public Monster(int id, string name, string imageName,
-                       int maximumHitPoints, IEnumerable<PlayerAttribute> attributes,
+                       int maximumHitPoints, IEnumerable<ValueDataModel> attributes,
                        GameItem currentWeapon,
                        int rewardExperiencePoints, int gold) :
             base(name, maximumHitPoints, maximumHitPoints, attributes, gold)

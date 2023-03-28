@@ -44,7 +44,7 @@
       "Tags": ["dark", "blue"]
     }
   ],
-  "BaseValues": [
+  "Stats": [
     {
       "ID": 6,
       "Name": "Physical Attack",

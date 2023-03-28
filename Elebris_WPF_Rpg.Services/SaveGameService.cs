@@ -57,18 +57,18 @@ namespace Elebris_WPF_Rpg.Services
             return player;
         }
 
-        private static IEnumerable<PlayerAttribute> GetPlayerAttributes(JObject data)
+        private static IEnumerable<ValueDataModel> GetPlayerAttributes(JObject data)
         {
-            List<PlayerAttribute> attributes =
-                new List<PlayerAttribute>();
+            List<ValueDataModel> attributes =
+                new List<ValueDataModel>();
 
             foreach (JToken itemToken in (JArray)data[nameof(GameState.Player)]
                 [nameof(Player.Attributes)])
             {
-                attributes.Add(new PlayerAttribute(
-                                   (string)itemToken[nameof(PlayerAttribute.Abbreviation)],
-                                   (string)itemToken[nameof(PlayerAttribute.Name)],
-                                   (int)itemToken[nameof(PlayerAttribute.BaseValue)]
+                attributes.Add(new ValueDataModel(
+                                   (string)itemToken[nameof(ValueDataModel.Abbreviation)],
+                                   (string)itemToken[nameof(ValueDataModel.Name)],
+                                   (int)itemToken[nameof(ValueDataModel.BaseValue)]
                                   ));
             }
 

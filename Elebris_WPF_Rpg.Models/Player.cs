@@ -31,7 +31,7 @@ namespace Elebris_WPF_Rpg.Models
 
         public Player(string name, int experiencePoints,
                       int maximumHitPoints, int currentHitPoints,
-                      IEnumerable<PlayerAttribute> attributes, int gold) :
+                      IEnumerable<ValueDataModel> attributes, int gold) :
             base(name, maximumHitPoints, currentHitPoints, attributes, gold)
         {
             ExperiencePoints = experiencePoints;

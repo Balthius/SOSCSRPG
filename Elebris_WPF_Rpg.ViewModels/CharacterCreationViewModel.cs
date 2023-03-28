@@ -14,8 +14,8 @@ namespace Elebris_WPF_Rpg.ViewModels
         public Race SelectedRace { get; init; }
         public List<Race> Races { get; init; }
         public string Name { get; init; }
-        public ObservableCollection<PlayerAttribute> PlayerAttributes { get; } =
-            new ObservableCollection<PlayerAttribute>(); // what will be used to create the character after we "accept" them
+        public ObservableCollection<ValueDataModel> PlayerAttributes { get; } =
+            new ObservableCollection<ValueDataModel>(); // what will be used to create the character after we "accept" them
 
         public ObservableCollection<BiasModifier> BiasValues { get; } =
             new ObservableCollection<BiasModifier>(); // after character creation does not need to be recreated
@@ -48,9 +48,9 @@ namespace Elebris_WPF_Rpg.ViewModels
             {
                 modifiers.Add(mod.AttributeName, mod.Modifier);
             }
-           List<PlayerAttribute> new_attributes = AttributeSetFactory.GenerateAttributeSet(modifiers);
+           List<ValueDataModel> new_attributes = AttributeSetFactory.GenerateAttributeSet(modifiers);
             
-            foreach (PlayerAttribute playerAttribute in new_attributes)
+            foreach (ValueDataModel playerAttribute in new_attributes)
             {
                 PlayerAttributes.Add(playerAttribute);
             }
@@ -87,7 +87,7 @@ namespace Elebris_WPF_Rpg.ViewModels
 
         public Player GetPlayer()
         {
-            Player player = new Player(Name, 0, 10, 10, PlayerAttributes, 10);
+            Player player = CharacterFactory.ReturnPlayer(Name, PlayerAttributes);
 
             // Give player default inventory items, weapons, recipes, etc.
             player.AddItemToInventory(ItemFactory.CreateGameItem(1001));

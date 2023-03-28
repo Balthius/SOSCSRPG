@@ -19,7 +19,7 @@ namespace Elebris_WPF_Rpg.Models.Shared
             return Convert.ToInt32(jsonToken[key]);
         }
 
-        public static PlayerAttribute GetAttribute(this LivingEntity entity, string attributeKey)
+        public static ValueDataModel GetAttribute(this LivingEntity entity, string attributeKey)
         {
             return entity.Attributes
                          .First(pa => pa.Abbreviation.Equals(attributeKey,
